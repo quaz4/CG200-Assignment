@@ -1,7 +1,10 @@
+#include <GL/gl.h>
 #include <GL/glut.h> // Include the GLUT header file
 #include <math.h>
 #include <time.h>
 #include <stdio.h>
+
+#include "texture.hpp"
 
 struct Camera {
 	double radius;
@@ -53,13 +56,18 @@ void keyPressed(unsigned char key, int x, int y)
 
 void ground()
 {
+	glEnable(GL_TEXTURE_2D);
+	GLuint texture = loadTextureRepeat("textures/wave-sand.raw");
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	
 	//Ground
-	glColor3f(1.0f, 1.0f, 0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
 	glBegin(GL_POLYGON);
-		glVertex3f(-200.0f, 0.0f,  200.0f);
-		glVertex3f( 200.0f, 0.0f,  200.0f);
-		glVertex3f( 200.0f, 0.0f, -200.0f);
-		glVertex3f(-200.0f, 0.0f, -200.0f);
+		glTexCoord2d(-200.0f,  200.0f); glVertex3f(-200.0f, 0.0f,  200.0f);
+		glTexCoord2d( 200.0f,  200.0f); glVertex3f( 200.0f, 0.0f,  200.0f);
+		glTexCoord2d( 200.0f, -200.0f); glVertex3f( 200.0f, 0.0f, -200.0f);
+		glTexCoord2d(-200.0f, -200.0f); glVertex3f(-200.0f, 0.0f, -200.0f);
 	glEnd();
 }
 

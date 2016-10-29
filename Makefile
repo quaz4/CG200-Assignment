@@ -1,2 +1,2 @@
-Assignment: main.cpp
-	g++ -lglut -lGLU -lGL assignment4.cpp
+Assignment: main.cpp texture.cpp
+	g++ -lglut -lGLU -lGL main.cpp texture.cpp
