@@ -4,6 +4,7 @@
 #include <time.h>
 #include <stdio.h>
 
+#include "main.hpp"
 #include "texture.hpp"
 
 struct Camera {
@@ -59,8 +60,7 @@ void ground()
 	glEnable(GL_TEXTURE_2D);
 	GLuint texture = loadTextureRepeat("textures/wave-sand.raw");
 	glBindTexture(GL_TEXTURE_2D, texture);
-
-	
+/*
 	//Ground
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glBegin(GL_POLYGON);
@@ -68,6 +68,15 @@ void ground()
 		glTexCoord2d( 200.0f,  200.0f); glVertex3f( 200.0f, 0.0f,  200.0f);
 		glTexCoord2d( 200.0f, -200.0f); glVertex3f( 200.0f, 0.0f, -200.0f);
 		glTexCoord2d(-200.0f, -200.0f); glVertex3f(-200.0f, 0.0f, -200.0f);
+	glEnd();
+*/
+	//Ground
+	glColor3f(1.0f, 1.0f, 1.0f);
+	glBegin(GL_POLYGON);
+		glTexCoord2d(-5.0f,  5.0f); glVertex3f(-5.0f, 0.0f,  5.0f);
+		glTexCoord2d( 5.0f,  5.0f); glVertex3f( 5.0f, 0.0f,  5.0f);
+		glTexCoord2d( 5.0f, -5.0f); glVertex3f( 5.0f, 0.0f, -5.0f);
+		glTexCoord2d(-5.0f, -5.0f); glVertex3f(-5.0f, 0.0f, -5.0f);
 	glEnd();
 }
 
@@ -111,6 +120,7 @@ void Timer(int iUnused)
 void display(void)
 {
 	glEnable(GL_DEPTH_TEST);
+	fog();
 
 	if(yRotate == true)
 	{
@@ -162,6 +172,21 @@ void reshape(int width, int height)
 	
 	glMatrixMode(GL_MODELVIEW); // Switch back to the model view matrix, so that we can start drawing shapes correctly
 }
+
+void fog()
+{
+	GLfloat fogColor[4]= {0.7f, 0.9f, 1.0f, 1.0f};
+	glFogi(GL_FOG_MODE, GL_LINEAR);
+	glFogfv(GL_FOG_COLOR, fogColor);
+	glFogf(GL_FOG_DENSITY, 0.35f);
+	glHint(GL_FOG_HINT, GL_DONT_CARE);
+	glFogf(GL_FOG_START, 5.0f);
+	glFogf(GL_FOG_END, 10.0f);
+	glMatrixMode(GL_MODELVIEW);
+	glEnable(GL_FOG);
+	glRotatef(20, 0, 1, 0);
+}
+
 
 int main(int argc, char **argv)
 {
