@@ -5,7 +5,7 @@
 #include <GL/glut.h> // Include the GLUT header file
 #include <stdio.h>
 
-GLuint loadTextureClamp(const char * fName)
+GLuint loadTextureClamp(const char* fName)
 {
 	GLuint texture;
 	int width, height;
@@ -54,7 +54,7 @@ GLuint loadTextureClamp(const char * fName)
 	return texture;
 }
 
-GLuint loadTextureRepeat(const char * fName)
+GLuint loadTextureRepeat(const char* fName)
 {
 	GLuint texture;
 	int width, height;
@@ -69,8 +69,10 @@ GLuint loadTextureRepeat(const char * fName)
 	}
 
 	//Allocate space for data
-	width = 256;
-	height = 256;
+	//width = 256;
+	//height = 256;
+	width = 16;
+	height = 16;
 	data = (unsigned char*)malloc(width * height * 3);
 
 	//Read in data

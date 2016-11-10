@@ -1,2 +1,2 @@
-GLuint loadTextureClamp(const char * fName);
-GLuint loadTextureRepeat(const char * fName);
+GLuint loadTextureClamp(const char* fName);
+GLuint loadTextureRepeat(const char* fName);
